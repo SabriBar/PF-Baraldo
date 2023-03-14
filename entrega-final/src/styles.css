@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter&family=Lato&display=swap');
+
+@font-face {
+  font-family: Proxima-nova;
+  src: url(assets/fonts/Fontspring-DEMO-proximanova-medium.otf) format("opentype");
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0%;
+  overflow-x: hidden;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-mdc-tooltip {
+  font-size: 15px;
+}
+
+.mat-typography{
+  background-color: #EAEAEA;
+}

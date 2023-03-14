@@ -1,0 +1,51 @@
+<h1 mat-dialog-title class="editar-inscripcion" appTituloEstilo>Editar Inscripcion</h1>
+<div mat-dialog-content style="width: 400px; padding: 10%;">
+    <form [formGroup]="form" class="formulario">
+
+        <mat-form-field class="col-md-7">
+            <mat-label>Curso</mat-label>
+            <mat-select formControlName="curso">
+                <mat-option *ngFor="let curso of curso$ | async"
+                    [value]="curso">{{curso.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-7">
+            <mat-label>Comision</mat-label>
+            <input matInput autocomplete="off" formControlName="comision">
+        </mat-form-field>
+        <div class="invalido" *ngIf="form.controls['comision'].dirty && form.controls['comision'].errors?.['required']">
+            Completar</div>
+
+        <mat-form-field class="col-md-7">
+            <mat-label>Nombre Alumno</mat-label>
+            <input matInput autocomplete="off" formControlName="alumnoNombre">
+        </mat-form-field>
+        <div class="invalido"
+            *ngIf="form.controls['alumnoNombre'].dirty && form.controls['alumnoNombre'].errors?.['required']">
+            Completar</div>
+
+        <mat-form-field class="col-md-7">
+            <mat-label>Apellido Alumno</mat-label>
+            <input matInput autocomplete="off" formControlName="alumnoApellido">
+        </mat-form-field>
+        <div class="invalido"
+            *ngIf="form.controls['alumnoApellido'].dirty && form.controls['alumnoApellido'].errors?.['required']">
+            Completar</div>
+
+        <mat-form-field class="col-md-7">
+            <mat-label>Profesor</mat-label>
+                        <mat-select formControlName="profesor">
+                            <mat-option *ngFor="let profesor of profesor$ | async"
+                                [value]="profesor">{{profesor.nombre}}</mat-option>
+                        </mat-select>
+        </mat-form-field>
+        <div class="invalido" *ngIf="form.controls['profesor'].dirty && form.controls['profesor'].errors?.['required']">
+            Completar</div>
+    </form>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid"
+            (click)="editInscripcion()">{{actionBtn}}</button>
+        <button mat-raised-button color="warn" mat-dialog-close="">Cerrar</button>
+    </div>
+</div>

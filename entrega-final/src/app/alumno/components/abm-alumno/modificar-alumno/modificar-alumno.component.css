@@ -1,0 +1,39 @@
+
+.editar-alumno {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #1F5379;
+    letter-spacing: .06rem;
+}
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -7%;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+button{
+    width: 40%;
+    margin-left: 6%;
+}
+
+
+.valido{
+    color: green;
+    font-size: .8rem;
+    margin-right: 9%;
+
+}
+
+.invalido{
+    color: red;
+    font-size: .8rem;
+    margin-right: 10%;
+    margin-left: -5%;
+}

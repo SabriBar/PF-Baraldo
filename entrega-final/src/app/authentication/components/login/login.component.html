@@ -1,0 +1,52 @@
+<div class="flex-container">
+
+
+    <div class="titulo">
+        <h2>Bienvenido</h2>
+        <h1>Ingreso a Gestión de Alumnos</h1>
+    </div>
+
+    <div class="form">
+
+        <form [formGroup]="formularioLogin" (ngSubmit)="login()">
+            <div class="form-group">
+                <input formControlName="usuario" type="text" class="form-control input-lg" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="Ingrese su usuario">
+                <div class="valido" *ngIf="formularioLogin.controls['usuario'].valid">Campo correcto</div>
+                <div class="invalido"
+                    *ngIf="formularioLogin.controls['usuario'].dirty && formularioLogin.controls['usuario'].errors?.['required']">
+                    No puede estar
+                    vacío</div>
+                <div class="invalido"
+                    *ngIf="formularioLogin.controls['usuario'].dirty && formularioLogin.controls['usuario'].errors?.['pattern']">
+                    El formato es
+                    incorrecto</div>
+            </div>
+            <div class="form-group">
+                <input formControlName="contraseña" type="password" class="form-control" id="exampleInputPassword1"
+                    placeholder="Ingrese su contraseña">
+                <div class="valido" *ngIf="formularioLogin.controls['contraseña'].valid">Campo correcto</div>
+                <div class="invalido"
+                    *ngIf="formularioLogin.controls['contraseña'].dirty && formularioLogin.controls['contraseña'].errors?.['required']">
+                    No puede estar
+                    vacío</div>
+                <div class="invalido"
+                    *ngIf="formularioLogin.controls['contraseña'].dirty && formularioLogin.controls['contraseña'].errors?.['minlength']">
+                    La contraseña debe contener entre 8-16 caracteres</div>
+                    <div class="invalido"
+                    *ngIf="formularioLogin.controls['contraseña'].dirty && formularioLogin.controls['contraseña'].errors?.['maxlength']">
+                    La contraseña debe contener entre 8-16 caracteres</div>
+            </div> 
+
+            <div class="sub-container">
+                <div class="bt">
+                    <button type="submit" class="btn btn-primary" [disabled]="formularioLogin.invalid">Ingresar</button>
+                </div>
+                <div class="admi">
+                    <mat-slide-toggle formControlName="esAdmin">Es administrador</mat-slide-toggle>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

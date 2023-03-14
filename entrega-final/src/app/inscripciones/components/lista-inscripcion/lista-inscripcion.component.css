@@ -1,0 +1,81 @@
+
+.sub-container{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin: 1%;
+    margin-left: 10%;
+    margin-bottom: -.5%;
+    margin-top: -1%;
+  }
+  
+  .inscripciones {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #1F5379;
+    letter-spacing: .06rem;
+  }
+  
+  table {
+    width: 100%;
+    background-color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  th {
+    color: #287E5B;
+    font-size: .85rem;
+    font-weight: bolder;
+  }
+  
+  .mat-mdc-header-cell{
+    padding: 1.5%;
+  }
+
+  th.mat-mdc-header-cell:first-of-type{
+    width: 19%;
+  }
+  
+  .mat-mdc-cell{
+    padding: 1.5%;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  td{
+    color: black;
+  }
+  
+  .pointer {
+    cursor: pointer;
+    margin: 3%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 80%;
+    margin: 0% 10% 0% 10%;
+  }
+  
+  .mat-mdc-raised-button{
+    background-color: #33a578;
+    color: #fffffe;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-size: .9rem;
+    letter-spacing: .05rem;
+    height: 3rem;
+  }
+  
+  mat-label{
+    color: #BBB7B9;
+  }
+  
+  .mensaje{
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    color:darkslategray;
+    letter-spacing: .05rem;
+    text-align: center;
+    margin-top: 10%;
+  }

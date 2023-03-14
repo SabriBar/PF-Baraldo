@@ -1,0 +1,39 @@
+<ng-container *ngIf="sesion$ | async as sesion">
+<div class="sub-container">
+  <div class="subtittle">
+    <h2 class="cursos" appTituloEstilo>Cursos</h2>
+  </div>
+  <div class="add">
+    <button *ngIf="sesion.usuarioActivo?.esAdmin" mat-raised-button routerLink='/cursos/agregar'>Agregar Curso</button>
+  </div>
+</div>
+</ng-container>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let curso of cursos$ | async">
+      <mat-card appearance="outlined" class="example-card">
+        <mat-card-header>
+          <mat-card-title>{{ curso.nombre | uppercase }}</mat-card-title>
+          <mat-card-subtitle>{{ curso.comision }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="../../../../assets/cursoCard.jpg">
+        <mat-card-content>
+          <p>Dictado por:  {{ curso.profesor.nombre}}</p>
+          <p> Inscripcion {{ curso.inscripcionAbierta | booleanTransform: 'Abierta':'Cerrada'  }}</p>
+        </mat-card-content>
+        <ng-container *ngIf="sesion$ | async as sesion">
+        <mat-card-actions>
+          <button *ngIf="sesion.usuarioActivo?.esAdmin" (click)="editDialog(curso)" mat-flat-button color="primary">
+            Editar
+          </button>
+          <button *ngIf="sesion.usuarioActivo?.esAdmin" mat-flat-button color="warn" (click)="deleteCurso(curso)">
+            Eliminar
+          </button>
+        </mat-card-actions>
+      </ng-container>
+      </mat-card>
+    </div>
+  </div>
+</div>

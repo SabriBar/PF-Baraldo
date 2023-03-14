@@ -1,0 +1,370 @@
+{
+  "alumnos": [
+    {
+      "nombre": "Juan",
+      "apellido": "Rodriguez",
+      "curso": {
+        "nombre": "SQL",
+        "comision": "108",
+        "profesor": {
+          "id": 6,
+          "nombre": "Indiana",
+          "correo": "indianaj@gmail.com"
+        },
+        "inscripcionAbierta": "Cerrada",
+        "id": 5
+      },
+      "comision": "100",
+      "email": "juanrodri@gmail.com",
+      "id": 1
+    },
+    {
+      "nombre": "Mario",
+      "apellido": "Garcia",
+      "curso": {
+        "nombre": "Javascript",
+        "comision": "101",
+        "profesor": {
+          "id": 3,
+          "nombre": "Garrison",
+          "correo": "mrGarrison@gmail.com"
+        },
+        "inscripcionAbierta": "Cerrada",
+        "id": 2
+      },
+      "comision": "101",
+      "email": "garcia_mario@gmail.com",
+      "id": 2
+    },
+    {
+      "nombre": "Ana",
+      "apellido": "Lopez",
+      "curso": {
+        "nombre": "SQL",
+        "comision": "108",
+        "profesor": {
+          "id": 6,
+          "nombre": "Indiana",
+          "correo": "indianaj@gmail.com"
+        },
+        "inscripcionAbierta": "Cerrada",
+        "id": 5
+      },
+      "comision": "103",
+      "email": "ana1lopez@gmail.com",
+      "id": 3
+    },
+    {
+      "nombre": "Carlos",
+      "apellido": "Martinez",
+      "curso": {
+        "nombre": "Diseño UX",
+        "comision": "105",
+        "profesor": {
+          "id": 5,
+          "nombre": "Albus",
+          "correo": "albus@gmail.com"
+        },
+        "inscripcionAbierta": "Cerrada",
+        "id": 4
+      },
+      "comision": "105",
+      "email": "carlistosm@gmail.com",
+      "id": 4
+    },
+    {
+      "nombre": "Jose",
+      "apellido": "Hernandez",
+      "curso": {
+        "nombre": "Angular",
+        "comision": "100",
+        "profesor": {
+          "id": 2,
+          "nombre": "Minerva",
+          "correo": "minerva@gmail.com"
+        },
+        "inscripcionAbierta": "Abierta",
+        "id": 1
+      },
+      "comision": "100",
+      "email": "josehernandez@gmail.com",
+      "id": 5
+    },
+    {
+      "nombre": "Laura",
+      "apellido": "Perez",
+      "curso": {
+        "nombre": "SQL",
+        "comision": "108",
+        "profesor": {
+          "id": 6,
+          "nombre": "Indiana",
+          "correo": "indianaj@gmail.com"
+        },
+        "inscripcionAbierta": "Cerrada",
+        "id": 5
+      },
+      "comision": "108",
+      "email": "lauperez@gmail.com",
+      "id": 6
+    },
+    {
+      "nombre": "Pedro",
+      "apellido": "Sanchez",
+      "curso": {
+        "nombre": "Javascript",
+        "comision": "101",
+        "profesor": {
+          "id": 3,
+          "nombre": "Garrison",
+          "correo": "mrGarrison@gmail.com"
+        },
+        "inscripcionAbierta": "Cerrada",
+        "id": 2
+      },
+      "comision": "101",
+      "email": "pepesanchez@gmail.com",
+      "id": 7
+    }
+  ],
+  "cursos": [
+    {
+      "nombre": "Angular",
+      "comision": "100",
+      "profesor": {
+        "id": 3,
+        "nombre": "Garrison",
+        "correo": "mrGarrison@gmail.com"
+      },
+      "inscripcionAbierta": "Abierta",
+      "id": 1
+    },
+    {
+      "nombre": "Javascript",
+      "comision": "101",
+      "profesor": {
+        "id": 6,
+        "nombre": "Indiana",
+        "correo": "indianaj@gmail.com"
+      },
+      "inscripcionAbierta": "Cerrada",
+      "id": 2
+    },
+    {
+      "nombre": "Phyton",
+      "comision": "103",
+      "profesor": {
+        "id": 4,
+        "nombre": "Walter",
+        "correo": "walterwh@gmail.com"
+      },
+      "inscripcionAbierta": "Abierta",
+      "id": 3
+    },
+    {
+      "nombre": "Diseño UX",
+      "comision": "105",
+      "profesor": {
+        "id": 5,
+        "nombre": "Albus",
+        "correo": "albus@gmail.com"
+      },
+      "inscripcionAbierta": "Cerrada",
+      "id": 4
+    },
+    {
+      "nombre": "SQL",
+      "comision": "108",
+      "profesor": {
+        "id": 6,
+        "nombre": "Indiana",
+        "correo": "indianaj@gmail.com"
+      },
+      "inscripcionAbierta": "Cerrada",
+      "id": 5
+    }
+  ],
+  "inscripciones": [
+    {
+      "curso": {
+        "nombre": "Javascript",
+        "comision": "101",
+        "profesor": {
+          "id": 3,
+          "nombre": "Garrison",
+          "correo": "mrGarrison@gmail.com"
+        },
+        "inscripcionAbierta": "Cerrada",
+        "id": 2
+      },
+      "comision": "101",
+      "alumnoNombre": "Pedro",
+      "alumnoApellido": "Sanchez",
+      "profesor": {
+        "id": 3,
+        "nombre": "Garrison",
+        "correo": "mrGarrison@gmail.com"
+      },
+      "id": 1
+    },
+    {
+      "curso": {
+        "nombre": "SQL",
+        "comision": "108",
+        "profesor": {
+          "id": 6,
+          "nombre": "Indiana",
+          "correo": "indianaj@gmail.com"
+        },
+        "inscripcionAbierta": "Cerrada",
+        "id": 5
+      },
+      "comision": "108",
+      "alumnoNombre": "Laura",
+      "alumnoApellido": "Perez",
+      "profesor": {
+        "id": 6,
+        "nombre": "Indiana",
+        "correo": "indianaj@gmail.com"
+      },
+      "id": 2
+    },
+    {
+      "curso": {
+        "nombre": "Angular",
+        "comision": "100",
+        "profesor": {
+          "id": 3,
+          "nombre": "Garrison",
+          "correo": "mrGarrison@gmail.com"
+        },
+        "inscripcionAbierta": "Abierta",
+        "id": 1
+      },
+      "comision": "100",
+      "alumnoNombre": "Jose",
+      "alumnoApellido": "Hernandez",
+      "profesor": {
+        "id": 4,
+        "nombre": "Walter",
+        "correo": "walterwh@gmail.com"
+      },
+      "id": 3
+    },
+    {
+      "curso": {
+        "nombre": "Diseño UX",
+        "comision": "105",
+        "profesor": {
+          "id": 5,
+          "nombre": "Albus",
+          "correo": "albus@gmail.com"
+        },
+        "inscripcionAbierta": "Cerrada",
+        "id": 4
+      },
+      "comision": "105",
+      "alumnoNombre": "Carlos",
+      "alumnoApellido": "Martinez",
+      "profesor": {
+        "id": 5,
+        "nombre": "Albus",
+        "correo": "albus@gmail.com"
+      },
+      "id": 4
+    },
+    {
+      "curso": {
+        "nombre": "SQL",
+        "comision": "108",
+        "profesor": {
+          "id": 6,
+          "nombre": "Indiana",
+          "correo": "indianaj@gmail.com"
+        },
+        "inscripcionAbierta": "Cerrada",
+        "id": 5
+      },
+      "comision": "103",
+      "alumnoNombre": "Ana",
+      "alumnoApellido": "Lopez",
+      "profesor": {
+        "id": 4,
+        "nombre": "Walter",
+        "correo": "walterwh@gmail.com"
+      },
+      "id": 5
+    },
+    {
+      "curso": {
+        "nombre": "Javascript",
+        "comision": "101",
+        "profesor": {
+          "id": 3,
+          "nombre": "Garrison",
+          "correo": "mrGarrison@gmail.com"
+        },
+        "inscripcionAbierta": "Cerrada",
+        "id": 2
+      },
+      "comision": "101",
+      "alumnoNombre": "Mario",
+      "alumnoApellido": "Garcia",
+      "profesor": {
+        "id": 3,
+        "nombre": "Garrison",
+        "correo": "mrGarrison@gmail.com"
+      },
+      "id": 6
+    },
+    {
+      "curso": {
+        "nombre": "Angular",
+        "comision": "100",
+        "profesor": {
+          "id": 3,
+          "nombre": "Garrison",
+          "correo": "mrGarrison@gmail.com"
+        },
+        "inscripcionAbierta": "Abierta",
+        "id": 1
+      },
+      "comision": "100",
+      "alumnoNombre": "Juan",
+      "alumnoApellido": "Rodriguez",
+      "profesor": {
+        "id": 2,
+        "nombre": "Minerva",
+        "correo": "minerva@gmail.com"
+      },
+      "id": 7
+    }
+  ],
+  "profesores": [
+    {
+      "id": 2,
+      "nombre": "Minerva",
+      "correo": "minerva@gmail.com"
+    },
+    {
+      "id": 3,
+      "nombre": "Garrison",
+      "correo": "mrGarrison@gmail.com"
+    },
+    {
+      "id": 4,
+      "nombre": "Walter",
+      "correo": "walterwh@gmail.com"
+    },
+    {
+      "id": 5,
+      "nombre": "Albus",
+      "correo": "albus@gmail.com"
+    },
+    {
+      "id": 6,
+      "nombre": "Indiana",
+      "correo": "indianaj@gmail.com"
+    }
+  ]
+}

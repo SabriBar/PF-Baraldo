@@ -1,0 +1,78 @@
+<ng-container *ngIf="sesion$ | async as sesion">
+  <div class="sub-container">
+    <div class="subtittle">
+      <h2 class="inscripciones" appTituloEstilo>Lista de Inscripciones</h2>
+    </div>
+    <div class="add">
+      <button *ngIf="sesion.usuarioActivo?.esAdmin" mat-raised-button routerLink='/inscripciones/agregar-inscripcion'>Agregar Inscripcion</button>
+    </div>
+  </div>
+</ng-container>
+
+<div>
+  <mat-form-field>
+    <mat-label>Filtro de Busqueda</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input autocomplete="off">
+  </mat-form-field>
+
+  <div class="mat-elevation-z8" style="width: 80%; margin-left: 10%; margin-bottom: 2%;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Columna Id -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Nro.</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Columna Curso -->
+      <ng-container matColumnDef="curso">
+        <th mat-header-cell *matHeaderCellDef> Curso </th>
+        <td mat-cell *matCellDef="let element"> {{element.curso.nombre}}</td>
+      </ng-container>
+
+      <!-- Columna Comision -->
+      <ng-container matColumnDef="comision">
+        <th mat-header-cell *matHeaderCellDef> Comision </th>
+        <td mat-cell *matCellDef="let element"> {{element.comision}} </td>
+      </ng-container>
+
+      <!-- Columna Alumno -->
+      <ng-container matColumnDef="alumno">
+        <th mat-header-cell *matHeaderCellDef> Alumno </th>
+        <td mat-cell *matCellDef="let element"> {{element.alumnoNombre}} {{element.alumnoApellido}} </td>
+      </ng-container>
+
+      <!-- Columna Profesor -->
+      <ng-container matColumnDef="profesor">
+        <th mat-header-cell *matHeaderCellDef> Profesor </th>
+        <td mat-cell *matCellDef="let element"> {{element.profesor.nombre}} </td>
+      </ng-container>
+
+
+      <!-- Columna Acciones -->
+      <ng-container matColumnDef="acciones" *ngIf="sesion$ | async as sesion">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let inscripcion;" style="text-align: right;">
+          <a *ngIf="sesion.usuarioActivo?.esAdmin" class="pointer" matTooltip="Modificar"
+            (click)="editDialog(inscripcion)" style="color: #4a2885;">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a *ngIf="sesion.usuarioActivo?.esAdmin" class="pointer" matTooltip="Dar de Baja" style="color: #4a2885;"
+            (click)="deleteInscripcion(inscripcion)">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay coincidencias con "{{input.value}}"</td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons
+      aria-label="Selecciona cantidad de elementos">
+    </mat-paginator>
+  </div>
+</div>
