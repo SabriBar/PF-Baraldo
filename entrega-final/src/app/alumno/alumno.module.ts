@@ -7,6 +7,8 @@ import { AgregarAlumnoComponent } from './components/abm-alumno/agregar-alumno/a
 import { RouterModule } from '@angular/router';
 import { AlumnoRoutingModule } from './alumno-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { alumnoStateFeatureKey, reducer } from './alumno-state.reducer';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     SharedModule,
     RouterModule,
-    AlumnoRoutingModule
+    AlumnoRoutingModule,
+    StoreModule.forFeature(alumnoStateFeatureKey, reducer)
   ],
   exports: [
     ListaAlumnoComponent

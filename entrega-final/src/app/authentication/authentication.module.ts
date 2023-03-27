@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from '../shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { authFeatureKey, authReducer} from './auth.reducer';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -12,7 +15,9 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    StoreModule.forFeature(authFeatureKey, authReducer)
   ],
   exports: [
     LoginComponent

@@ -1,10 +1,10 @@
-<ng-container *ngIf="sesion$ | async as sesion">
+<ng-container *ngIf="sesionActiva$ | async">
   <div class="sub-container">
     <div class="subtittle">
       <h2 class="alumnos">Lista de Alumnos</h2>
     </div>
     <div class="add">
-      <button *ngIf="sesion.usuarioActivo?.esAdmin" mat-raised-button routerLink='/alumnos/agregar-alumno'>Agregar Alumno</button>
+      <button *ngIf="(usuarioActivo$ | async)?.esAdmin" mat-raised-button routerLink='/alumnos/agregar-alumno'>Agregar Alumno</button>
     </div>
   </div>
 </ng-container>
@@ -44,14 +44,14 @@
       </ng-container>
 
       <!-- Columna Acciones -->
-      <ng-container matColumnDef="acciones" *ngIf="sesion$ | async as sesion">
+      <ng-container matColumnDef="acciones" *ngIf="sesionActiva$ | async as sesion">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let alumno" style="text-align: right;">
-          <a *ngIf="sesion.usuarioActivo?.esAdmin" class="pointer" matTooltip="Modificar"
+          <a *ngIf="(usuarioActivo$ | async)?.esAdmin" class="pointer" matTooltip="Modificar"
             (click)="editDialog(alumno)" style="color: #4a2885;">
             <mat-icon>edit</mat-icon>
           </a>
-          <a *ngIf="sesion.usuarioActivo?.esAdmin" class="pointer" matTooltip="Dar de Baja" style="color: #4a2885;"
+          <a *ngIf="(usuarioActivo$ | async)?.esAdmin" class="pointer" matTooltip="Dar de Baja" style="color: #4a2885;"
             (click)="deleteAlumno(alumno)">
             <mat-icon>delete</mat-icon>
           </a>

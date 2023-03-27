@@ -9,8 +9,6 @@ import { AuthenticationModule } from '../authentication/authentication.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-
-
 @NgModule({
   declarations: [
     NotFoundComponent,

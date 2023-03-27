@@ -3,10 +3,16 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
+import { AuthState } from 'src/app/authentication/auth.reducer';
+import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/auth.selectors';
 import { SesionService } from 'src/app/core/services/sesion.service';
 import { Alumno } from 'src/app/shared/models/alumno';
 import { Sesion } from 'src/app/shared/models/sesion';
+import { Usuario } from 'src/app/shared/models/usuario';
+import { cargarAlumnoState } from '../../alumno-state.actions';
+import { AlumnoState } from '../../alumno-state.reducer';
 import { AbmService } from '../../services/abm.service';
 import { AlumnosService } from '../../services/alumnos.service';
 import { ModificarAlumnoComponent } from '../abm-alumno/modificar-alumno/modificar-alumno.component';
@@ -24,20 +30,25 @@ export class ListaAlumnoComponent implements OnInit, OnDestroy, AfterViewInit {
   columnas: string[] = ['usuario', 'curso', 'comision', 'email', 'acciones'];
   suscripcion!: Subscription;
   alumnos$!: Observable<Alumno[]>;
-  sesion$!: Observable<Sesion>;
+  sesionActiva$!: Observable<Boolean>;
+  usuarioActivo$!: Observable<Usuario | undefined>;
 
   constructor(
     public alumnoService: AlumnosService,
     private abmService: AbmService,
     private sesion: SesionService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private store: Store<AlumnoState>,
+    private authStore: Store<AuthState>
   ) { }
 
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.store.dispatch(cargarAlumnoState());
     this.cargarAlumno();
-    this.sesion$ = this.sesion.obtenerSesion();
+    this.sesionActiva$ = this.authStore.select(selectSesionActiva);
+    this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
   }
 
   ngOnDestroy(): void {

@@ -1,5 +1,5 @@
-<ng-container *ngIf="sesion$ | async as sesion">
-  <ng-container *ngIf="sesion.sesionActiva">
+<ng-container *ngIf="sesionActiva$ | async">
+  <ng-container *ngIf="sesionActiva$">
     <div class="pie pie1" [ngClass]="isActive ? 'inactive' : 'active'">
       <div class="pie-color pie-color1">
         <a routerLink="alumnos/lista">

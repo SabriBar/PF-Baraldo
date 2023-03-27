@@ -8,21 +8,24 @@ import { ModificarCursoComponent } from './components/abm-curso/modificar-curso/
 import { BooleanTransformPipe } from './pipes/boolean-transform.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { CursosService } from './services/cursos.service';
-
-
+import { StoreModule } from '@ngrx/store';
+import { cursoStateFeatureKey, reducer } from './curso-state.reducer';
+import { CursoInicioComponent } from './components/curso-inicio/curso-inicio.component';
 
 @NgModule({
   declarations: [
     CardCursoComponent,
     AgregarCursoComponent,
     ModificarCursoComponent,
-    BooleanTransformPipe
+    BooleanTransformPipe,
+    CursoInicioComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
-    CursoRoutingModule
+    CursoRoutingModule,
+    StoreModule.forFeature(cursoStateFeatureKey, reducer)
   ],
   exports: [
     CardCursoComponent

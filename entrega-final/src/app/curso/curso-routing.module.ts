@@ -5,10 +5,11 @@ import { SesionGuard } from '../core/guards/sesion.guard';
 import { AgregarCursoComponent } from './components/abm-curso/agregar-curso/agregar-curso.component';
 import { ModificarCursoComponent } from './components/abm-curso/modificar-curso/modificar-curso.component';
 import { CardCursoComponent } from './components/card-curso/card-curso.component';
+import { CursoInicioComponent } from './components/curso-inicio/curso-inicio.component';
 
 const routes: Routes = [
   {
-    path: '', canActivateChild: [SesionGuard], children: [
+    path: '', component: CursoInicioComponent, canActivateChild: [SesionGuard], children: [
       { path: 'lista', component: CardCursoComponent },
       { path: 'agregar', component: AgregarCursoComponent, canActivate: [AdminGuard] },
       { path: 'editar', component: ModificarCursoComponent, canActivate: [AdminGuard] }

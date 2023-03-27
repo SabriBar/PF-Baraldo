@@ -125,6 +125,24 @@
       "comision": "101",
       "email": "pepesanchez@gmail.com",
       "id": 7
+    },
+    {
+      "nombre": "dfdf",
+      "apellido": "dfdfd",
+      "curso": {
+        "nombre": "Angular",
+        "comision": "100",
+        "profesor": {
+          "id": 3,
+          "nombre": "Garrison",
+          "correo": "mrGarrison@gmail.com"
+        },
+        "inscripcionAbierta": "Abierta",
+        "id": 1
+      },
+      "comision": "dfdfd",
+      "email": "sabrii3336@gmail.com",
+      "id": 8
     }
   ],
   "cursos": [
@@ -151,7 +169,7 @@
       "id": 2
     },
     {
-      "nombre": "Phyton",
+      "nombre": "PHYTON",
       "comision": "103",
       "profesor": {
         "id": 4,
@@ -365,6 +383,23 @@
       "id": 6,
       "nombre": "Indiana",
       "correo": "indianaj@gmail.com"
+    }
+  ],
+  "usuarios": [
+    {
+      "usuario": "sabribar",
+      "contraseña": "sabribar3",
+      "esAdmin": true
+    },
+    {
+      "usuario": "abner",
+      "contraseña": "asd.123",
+      "esAdmin": true
+    },
+    {
+      "usuario": "invitado",
+      "contraseña": "invitado1",
+      "esAdmin": false
     }
   ]
 }

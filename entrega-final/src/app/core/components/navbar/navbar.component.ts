@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { AuthState } from 'src/app/authentication/auth.reducer';
+import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/auth.selectors';
 import { Sesion } from 'src/app/shared/models/sesion';
+import { Usuario } from 'src/app/shared/models/usuario';
 import { SesionService } from '../../services/sesion.service';
 
 @Component({
@@ -9,7 +13,8 @@ import { SesionService } from '../../services/sesion.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  sesion$!: Observable<Sesion>;
+  sesionActiva$!: Observable<Boolean>;
+  usuarioActivo$!: Observable<Usuario | undefined>;
   public isActive = false;
 
 
@@ -18,11 +23,12 @@ export class NavbarComponent implements OnInit {
   }
 
   constructor(
-    private sesion: SesionService
+    private authStore: Store<AuthState>
   ) { }
 
   ngOnInit(): void {
-    this.sesion$ = this.sesion.obtenerSesion();
+    this.sesionActiva$ = this.authStore.select(selectSesionActiva);
+    this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
   }
 
 }

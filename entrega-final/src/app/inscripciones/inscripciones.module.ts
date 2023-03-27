@@ -5,6 +5,8 @@ import { ListaInscripcionComponent } from './components/lista-inscripcion/lista-
 import { SharedModule } from '../shared/shared.module';
 import { AgregarInscripcionComponent } from './components/abm-inscripcion/agregar-inscripcion/agregar-inscripcion.component';
 import { ModificarInscripcionComponent } from './components/abm-inscripcion/modificar-inscripcion/modificar-inscripcion.component';
+import { StoreModule } from '@ngrx/store';
+import { inscripcionStateFeatureKey, reducer } from './inscripcion-state.reducer';
 
 
 @NgModule({
@@ -17,6 +19,7 @@ import { ModificarInscripcionComponent } from './components/abm-inscripcion/modi
     CommonModule,
     SharedModule,
     InscripcionesRoutingModule,
+    StoreModule.forFeature(inscripcionStateFeatureKey, reducer)
     
   ]
 })

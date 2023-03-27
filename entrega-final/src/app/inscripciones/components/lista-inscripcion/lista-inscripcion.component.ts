@@ -4,10 +4,16 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
+import { AuthState } from 'src/app/authentication/auth.reducer';
+import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/auth.selectors';
 import { SesionService } from 'src/app/core/services/sesion.service';
 import { Inscripcion } from 'src/app/shared/models/inscripcion';
 import { Sesion } from 'src/app/shared/models/sesion';
+import { Usuario } from 'src/app/shared/models/usuario';
+import { cargarInscripcionState } from '../../inscripcion-state.actions';
+import { InscripcionState } from '../../inscripcion-state.reducer';
 import { AbmService } from '../../service/abm.service';
 import { InscripcionService } from '../../service/inscripcion.service';
 import { ModificarInscripcionComponent } from '../abm-inscripcion/modificar-inscripcion/modificar-inscripcion.component';
@@ -25,20 +31,26 @@ export class ListaInscripcionComponent implements OnInit {
   columnas: string[] = ['id', 'curso', 'comision', 'alumno', 'profesor', 'acciones'];
   suscripcion!: Subscription;
   inscripcion$!: Observable<Inscripcion[]>;
-  sesion$!: Observable<Sesion>
+  cargando$!: Observable<Boolean>;
+  sesionActiva$!: Observable<Boolean>;
+  usuarioActivo$!: Observable<Usuario | undefined>;
 
   constructor(
     public inscripcionService: InscripcionService,
     private abmService: AbmService,
     private snackBar: MatSnackBar,
     private sesion: SesionService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private store: Store<InscripcionState>,
+    private authStore: Store<AuthState>
   ) { }
 
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.store.dispatch(cargarInscripcionState());
     this.cargarInscripcion();
-    this.sesion$ = this.sesion.obtenerSesion();
+    this.sesionActiva$ = this.authStore.select(selectSesionActiva);
+    this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
   }
 
   ngOnDestroy(): void {
