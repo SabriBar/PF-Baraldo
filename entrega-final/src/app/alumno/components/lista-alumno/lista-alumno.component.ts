@@ -9,9 +9,8 @@ import { AuthState } from 'src/app/authentication/auth.reducer';
 import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/auth.selectors';
 import { SesionService } from 'src/app/core/services/sesion.service';
 import { Alumno } from 'src/app/shared/models/alumno';
-import { Sesion } from 'src/app/shared/models/sesion';
 import { Usuario } from 'src/app/shared/models/usuario';
-import { cargarAlumnoState } from '../../alumno-state.actions';
+import { alumnosCargados, cargarAlumnoState } from '../../alumno-state.actions';
 import { AlumnoState } from '../../alumno-state.reducer';
 import { AbmService } from '../../services/abm.service';
 import { AlumnosService } from '../../services/alumnos.service';
@@ -36,7 +35,6 @@ export class ListaAlumnoComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     public alumnoService: AlumnosService,
     private abmService: AbmService,
-    private sesion: SesionService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private store: Store<AlumnoState>,
@@ -45,7 +43,6 @@ export class ListaAlumnoComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   ngOnInit() {
-    this.store.dispatch(cargarAlumnoState());
     this.cargarAlumno();
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
@@ -62,8 +59,10 @@ export class ListaAlumnoComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   cargarAlumno() {
+    this.store.dispatch(cargarAlumnoState());
     this.dataSource = new MatTableDataSource<Alumno>();
     this.alumnoService.getAlumnosObservable().subscribe((alumnos: Alumno[]) => {
+      this.authStore.dispatch(alumnosCargados({ alumnos: alumnos }));
       this.dataSource.data = alumnos;
     });
   }

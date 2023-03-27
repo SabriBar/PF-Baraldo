@@ -9,6 +9,7 @@ import { AlumnoRoutingModule } from './alumno-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { alumnoStateFeatureKey, reducer } from './alumno-state.reducer';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { alumnoStateFeatureKey, reducer } from './alumno-state.reducer';
     CommonModule,
     SharedModule,
     RouterModule,
+    HttpClientModule,
     AlumnoRoutingModule,
     StoreModule.forFeature(alumnoStateFeatureKey, reducer)
   ],
