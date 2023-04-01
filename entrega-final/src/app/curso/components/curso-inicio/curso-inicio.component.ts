@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Curso } from 'src/app/shared/models/curso';
-import { cargarCursoState, cursosCargados } from '../../curso-state.actions';
-import { CursoState } from '../../curso-state.reducer';
-import { CursosService } from '../../services/cursos.service';
+import { cargarCursoState, cursosCargados } from '../../state/curso-state.actions';
+import { CursoState } from '../../state/curso-state.reducer';
 
 @Component({
   selector: 'app-curso-inicio',
@@ -13,12 +11,12 @@ import { CursosService } from '../../services/cursos.service';
 export class CursoInicioComponent implements OnInit {
 
 constructor(
-  private cursosService: CursosService
+  private store: Store<CursoState>
 ){}
 
 
 ngOnInit(){
-  
+  this.store.dispatch(cargarCursoState());
 }
 
 }

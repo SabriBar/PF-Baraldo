@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AbmService } from 'src/app/alumno/services/abm.service';
+import { createAlumnoState } from 'src/app/alumno/state/alumno-state.actions';
+import { AlumnoState } from 'src/app/alumno/state/alumno-state.reducer';
 import { CursosService } from 'src/app/curso/services/cursos.service';
+import { Alumno } from 'src/app/shared/models/alumno';
 import { Curso } from 'src/app/shared/models/curso';
 
 @Component({
@@ -18,11 +19,10 @@ export class AgregarAlumnoComponent implements OnInit {
 
   constructor(
     private fb: UntypedFormBuilder,
-    private abmService: AbmService,
     private curso: CursosService,
-    private router: Router,
-    private snackBar: MatSnackBar) {
-      
+    private store: Store<AlumnoState>
+    ) {
+
     let regexCorreo: string = '^[^@]+@[^@]+\.[a-zA-Z]{2,}$';
     this.curso$ = this.curso.obtenerCursosObservable();
     this.form = this.fb.group({
@@ -33,26 +33,24 @@ export class AgregarAlumnoComponent implements OnInit {
       email: new UntypedFormControl('', [Validators.required, Validators.pattern(regexCorreo)])
     })
 
-    
+
   }
 
   ngOnInit(): void {
   }
 
   createAlumno() {
-    if(this.form.valid){
-      this.abmService.createAlumno(this.form.value).subscribe({
-        next:(res) =>{
-          this.router.navigate(['/alumnos/lista']);
-          this.snackBar.open('  Alumno creado correctamente', '', {
-            duration: 1500,
-            horizontalPosition: 'left',
-            verticalPosition: 'bottom'
-          });
-        }
-      })
+
+    let alumno: Alumno = {
+      id: NaN,
+      nombre: this.form.value.nombre,
+      apellido: this.form.value.apellido,
+      curso: this.form.value.curso,
+      comision: this.form.value.comision,
+      email: this.form.value.email
     }
-  
+    this.store.dispatch(createAlumnoState({ alumno: alumno }));
+
   }
 
 }

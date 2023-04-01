@@ -5,15 +5,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { AuthState } from 'src/app/authentication/auth.reducer';
-import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/auth.selectors';
-import { SesionService } from 'src/app/core/services/sesion.service';
+import { AuthState } from 'src/app/authentication/state/auth.reducer';
+import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/state/auth.selectors';
 import { Alumno } from 'src/app/shared/models/alumno';
 import { Usuario } from 'src/app/shared/models/usuario';
-import { alumnosCargados, cargarAlumnoState } from '../../alumno-state.actions';
-import { AlumnoState } from '../../alumno-state.reducer';
 import { AbmService } from '../../services/abm.service';
 import { AlumnosService } from '../../services/alumnos.service';
+import { deleteAlumnoState } from '../../state/alumno-state.actions';
+import { AlumnoState } from '../../state/alumno-state.reducer';
 import { ModificarAlumnoComponent } from '../abm-alumno/modificar-alumno/modificar-alumno.component';
 
 @Component({
@@ -34,9 +33,7 @@ export class ListaAlumnoComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     public alumnoService: AlumnosService,
-    private abmService: AbmService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar,
     private store: Store<AlumnoState>,
     private authStore: Store<AuthState>
   ) { }
@@ -59,10 +56,8 @@ export class ListaAlumnoComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   cargarAlumno() {
-    this.store.dispatch(cargarAlumnoState());
     this.dataSource = new MatTableDataSource<Alumno>();
     this.alumnoService.getAlumnosObservable().subscribe((alumnos: Alumno[]) => {
-      this.authStore.dispatch(alumnosCargados({ alumnos: alumnos }));
       this.dataSource.data = alumnos;
     });
   }
@@ -77,14 +72,7 @@ export class ListaAlumnoComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   deleteAlumno(alumno: Alumno) {
-    this.abmService.deleteAlumno(alumno.id).subscribe((alumno: Alumno) => {
-      this.snackBar.open('  Alumno eliminado correctamente', '', {
-        duration: 1500,
-        horizontalPosition: 'left',
-        verticalPosition: 'bottom'
-      });
-      this.cargarAlumno();
-    });
+    this.store.dispatch(deleteAlumnoState({ alumno }));
   }
 
   editDialog(alumno: Alumno){

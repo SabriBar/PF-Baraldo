@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Curso } from '../shared/models/curso';
+import { Curso } from '../../shared/models/curso';
 import * as CursoStateActions from './curso-state.actions';
 
 export const cursoStateFeatureKey = 'cursoState';
@@ -12,7 +12,7 @@ export interface CursoState {
 export const initialState: CursoState = {
   cursos: [],
   cargando: false
-  
+
 };
 
 export const reducer = createReducer(
@@ -23,6 +23,14 @@ export const reducer = createReducer(
   on(CursoStateActions.cursosCargados, (state, { cursos }) => {
     return { ...state, cargando: false, cursos };
   }),
-
+  on(CursoStateActions.createCursoState, (state, { curso: Curso }) => {
+    return state;
+  }),
+  on(CursoStateActions.editCursoState, (state, { curso: Curso }) => {
+    return state;
+  }),
+  on(CursoStateActions.deleteCursoState, (state, { curso: Curso }) => {
+    return state;
+  })
 );
 

@@ -127,22 +127,22 @@
       "id": 7
     },
     {
-      "nombre": "dfdf",
-      "apellido": "dfdfd",
+      "id": 8,
+      "nombre": "sabirra",
+      "apellido": "sdfsdf",
       "curso": {
-        "nombre": "Angular",
-        "comision": "100",
+        "id": 6,
+        "nombre": "aaaa",
+        "comision": "12234",
         "profesor": {
-          "id": 3,
-          "nombre": "Garrison",
-          "correo": "mrGarrison@gmail.com"
+          "id": 6,
+          "nombre": "Indiana",
+          "correo": "indianaj@gmail.com"
         },
-        "inscripcionAbierta": "Abierta",
-        "id": 1
+        "inscripcionAbierta": "Cerrada"
       },
-      "comision": "dfdfd",
-      "email": "sabrii3336@gmail.com",
-      "id": 8
+      "comision": "333",
+      "email": "sabrii3336@gmail.com"
     }
   ],
   "cursos": [
@@ -200,6 +200,17 @@
       },
       "inscripcionAbierta": "Cerrada",
       "id": 5
+    },
+    {
+      "id": 6,
+      "nombre": "aaaa",
+      "comision": "12234",
+      "profesor": {
+        "id": 6,
+        "nombre": "Indiana",
+        "correo": "indianaj@gmail.com"
+      },
+      "inscripcionAbierta": "Cerrada"
     }
   ],
   "inscripciones": [

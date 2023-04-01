@@ -24,8 +24,8 @@ export class AbmService {
     );
   }
 
-  deleteInscripcion(id: number): Observable<Inscripcion> {
-    return this.http.delete<Inscripcion>(`${environment.apiURL}/inscripciones/${id}`).pipe(
+  deleteInscripcion(inscripcion: Inscripcion): Observable<Inscripcion> {
+    return this.http.delete<Inscripcion>(`${environment.apiURL}/inscripciones/${inscripcion.id}`).pipe(
       catchError(this.capturarError));
   }
 

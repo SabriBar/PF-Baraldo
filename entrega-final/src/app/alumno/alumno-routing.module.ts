@@ -4,11 +4,12 @@ import { AdminGuard } from '../core/guards/admin.guard';
 import { SesionGuard } from '../core/guards/sesion.guard';
 import { AgregarAlumnoComponent } from './components/abm-alumno/agregar-alumno/agregar-alumno.component';
 import { ModificarAlumnoComponent } from './components/abm-alumno/modificar-alumno/modificar-alumno.component';
+import { AlumnoInicioComponent } from './components/alumno-inicio/alumno-inicio.component';
 import { ListaAlumnoComponent } from './components/lista-alumno/lista-alumno.component';
 
 const routes: Routes = [
   {
-    path: '', canActivateChild: [SesionGuard], children: [
+    path: '', component: AlumnoInicioComponent, canActivateChild: [SesionGuard], children: [
       { path: 'lista', component: ListaAlumnoComponent },
       { path: 'agregar-alumno', component: AgregarAlumnoComponent, canActivate: [AdminGuard] },
       { path: 'editar-alumno', component: ModificarAlumnoComponent, canActivate: [AdminGuard] }

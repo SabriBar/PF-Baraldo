@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
-import { AuthState } from 'src/app/authentication/auth.reducer';
-import { selectSesionState } from 'src/app/authentication/auth.selectors';
+import { AuthState } from 'src/app/authentication/state/auth.reducer';
+import { selectSesionState } from 'src/app/authentication/state/auth.selectors';
 import { Sesion } from 'src/app/shared/models/sesion';
 
 @Injectable({

@@ -3,17 +3,16 @@ import { Observable } from 'rxjs';
 import { Curso } from 'src/app/shared/models/curso';
 import { CursosService } from '../../services/cursos.service';
 import { AbmService } from '../../services/abm.service';
-import { SesionService } from 'src/app/core/services/sesion.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModificarCursoComponent } from '../abm-curso/modificar-curso/modificar-curso.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CursoState } from '../../curso-state.reducer';
+import { CursoState } from '../../state/curso-state.reducer';
 import { Store } from '@ngrx/store';
-import { selectCargandoCursos, selectCursosCargados } from '../../curso-state.selectors';
+import { selectCargandoCursos, selectCursosCargados } from '../../state/curso-state.selectors';
 import { Usuario } from 'src/app/shared/models/usuario';
-import { AuthState } from 'src/app/authentication/auth.reducer';
-import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/auth.selectors';
-import { cargarCursoState, cursosCargados } from '../../curso-state.actions';
+import { AuthState } from 'src/app/authentication/state/auth.reducer';
+import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/state/auth.selectors';
+import { cargarCursoState, cursosCargados, deleteCursoState } from '../../state/curso-state.actions';
 
 @Component({
   selector: 'app-card-curso',
@@ -29,23 +28,13 @@ export class CardCursoComponent implements OnInit {
 
   constructor(
     private cursosService: CursosService,
-    private abmService: AbmService,
-    private sesion: SesionService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar,
     private store: Store<CursoState>,
     private authStore: Store<AuthState>
   ) { }
 
   ngOnInit() {
     this.cargando$ = this.store.select(selectCargandoCursos);
-
-    this.store.dispatch(cargarCursoState());
-
-    this.cursosService.obtenerCursosObservable().subscribe((cursos: Curso[]) => {
-      this.store.dispatch(cursosCargados({ cursos: cursos }));
-    });
-    
     this.cursos$ = this.store.select(selectCursosCargados);
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
@@ -53,14 +42,7 @@ export class CardCursoComponent implements OnInit {
 
 
   deleteCurso(curso: Curso) {
-    this.abmService.deleteCurso(curso).subscribe((curso: Curso) => {
-      this.snackBar.open('  Curso eliminado correctamente', '', {
-        duration: 1500,
-        horizontalPosition: 'left',
-        verticalPosition: 'bottom'
-      });
-      this.cursos$ = this.cursosService.obtenerCursosObservable();
-    });
+    this.store.dispatch(deleteCursoState({ curso }));
   }
 
   editDialog(curso: Curso) {

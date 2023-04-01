@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ProfesorService } from 'src/app/core/services/profesor.service';
 import { AbmService } from 'src/app/curso/services/abm.service';
+import { createCursoState } from 'src/app/curso/state/curso-state.actions';
+import { CursoState } from 'src/app/curso/state/curso-state.reducer';
 import { Curso } from 'src/app/shared/models/curso';
 import { Profesor } from 'src/app/shared/models/profesor';
 
@@ -34,10 +37,8 @@ export class AgregarCursoComponent implements OnInit {
 
   constructor(
     private fb: UntypedFormBuilder,
-    private abmService: AbmService,
-    private router: Router,
-    private snackBar: MatSnackBar,
-    private profesor: ProfesorService
+    private profesor: ProfesorService,
+    private store: Store<CursoState>
   ) {
 
     this.profesor$ = this.profesor.obtenerProfesores();
@@ -55,18 +56,15 @@ export class AgregarCursoComponent implements OnInit {
   }
 
   createCurso() {
-    if(this.form.valid){
-      this.abmService.createCurso(this.form.value).subscribe({
-        next:(res) =>{
-          this.router.navigate(['/cursos/lista']);
-          this.snackBar.open('  Curso creado correctamente', '', {
-            duration: 1500,
-            horizontalPosition: 'left',
-            verticalPosition: 'bottom'
-          });
-        }
-      })
-    }
+   
+   let curso: Curso = {
+    id: NaN,
+    nombre: this.form.value.nombre,
+    comision: this.form.value.comision,
+    profesor: this.form.value.profesor,
+    inscripcionAbierta: this.form.value.inscripcionAbierta,
+   }
+   this.store.dispatch(createCursoState({ curso: curso}));
     
   }
 }

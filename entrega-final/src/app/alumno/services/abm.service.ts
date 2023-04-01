@@ -24,8 +24,8 @@ export class AbmService {
     );
   }
 
-  deleteAlumno(id: number): Observable<Alumno> {
-    return this.http.delete<Alumno>(`${environment.apiURL}/alumnos/${id}`).pipe(
+  deleteAlumno(alumno: Alumno): Observable<Alumno> {
+    return this.http.delete<Alumno>(`${environment.apiURL}/alumnos/${alumno.id}`).pipe(
       catchError(this.capturarError));
   }
 

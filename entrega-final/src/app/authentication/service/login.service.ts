@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { SesionService } from 'src/app/core/services/sesion.service';
 import { Sesion } from 'src/app/shared/models/sesion';
 import { Usuario } from 'src/app/shared/models/usuario';
@@ -26,14 +26,17 @@ export class LoginService {
             sesionActiva: true,
             usuarioActivo: usuarioValidado
           }
-          return sesion
+          return sesion;
         }else {
-          const sesion: Sesion = {
-            sesionActiva: false
-          }
-          return sesion
-
+          throw new Error('Error de autenticación');
         }
+      }),
+      catchError((error: Error) => {
+        alert('Usuario y/o contraseña incorrecto')
+        const sesion: Sesion = {
+          sesionActiva: false
+        }
+        return throwError(sesion);
       })
     );
   }

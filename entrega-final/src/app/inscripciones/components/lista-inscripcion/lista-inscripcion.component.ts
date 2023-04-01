@@ -5,15 +5,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { AuthState } from 'src/app/authentication/auth.reducer';
-import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/auth.selectors';
+import { AuthState } from 'src/app/authentication/state/auth.reducer';
+import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/state/auth.selectors';
 import { Inscripcion } from 'src/app/shared/models/inscripcion';
 import { Usuario } from 'src/app/shared/models/usuario';
-import { cargarInscripcionState, inscripcionesCargadas } from '../../inscripcion-state.actions';
-import { InscripcionState } from '../../inscripcion-state.reducer';
+import { InscripcionState } from '../../state/inscripcion-state.reducer';
 import { AbmService } from '../../service/abm.service';
 import { InscripcionService } from '../../service/inscripcion.service';
 import { ModificarInscripcionComponent } from '../abm-inscripcion/modificar-inscripcion/modificar-inscripcion.component';
+import { deleteInscripcionState } from '../../state/inscripcion-state.actions';
 
 @Component({
   selector: 'app-lista-inscripcion',
@@ -59,10 +59,8 @@ export class ListaInscripcionComponent implements OnInit {
   }
 
   cargarInscripcion() {
-    this.store.dispatch(cargarInscripcionState());
     this.dataSource = new MatTableDataSource<Inscripcion>();
     this.inscripcionService.getInscripcionesObservable().subscribe((inscripciones: Inscripcion[]) => {
-      this.authStore.dispatch(inscripcionesCargadas({ inscripciones: inscripciones }));
       this.dataSource.data = inscripciones;
     });
   }
@@ -77,14 +75,7 @@ export class ListaInscripcionComponent implements OnInit {
   }
 
   deleteInscripcion(inscripcion: Inscripcion) {
-    this.abmService.deleteInscripcion(inscripcion.id).subscribe((inscripcion: Inscripcion) => {
-      this.snackBar.open('  Inscripcion eliminada correctamente', '', {
-        duration: 1500,
-        horizontalPosition: 'left',
-        verticalPosition: 'bottom'
-      });
-      this.cargarInscripcion();
-    });
+    this.store.dispatch(deleteInscripcionState({ inscripcion }));
   }
 
   editDialog(inscripcion: Inscripcion){

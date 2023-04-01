@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AuthState } from 'src/app/authentication/auth.reducer';
-import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/auth.selectors';
-import { Sesion } from 'src/app/shared/models/sesion';
+import { AuthState } from 'src/app/authentication/state/auth.reducer';
+import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/state/auth.selectors';
 import { Usuario } from 'src/app/shared/models/usuario';
-import { SesionService } from '../../services/sesion.service';
 
 @Component({
   selector: 'app-navbar',

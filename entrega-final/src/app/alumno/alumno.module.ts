@@ -8,15 +8,19 @@ import { RouterModule } from '@angular/router';
 import { AlumnoRoutingModule } from './alumno-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
-import { alumnoStateFeatureKey, reducer } from './alumno-state.reducer';
+import { alumnoStateFeatureKey, reducer } from './state/alumno-state.reducer';
 import { HttpClientModule } from '@angular/common/http';
+import { AlumnoInicioComponent } from './components/alumno-inicio/alumno-inicio.component';
+import { EffectsModule } from '@ngrx/effects';
+import { AlumnoEffects } from './state/alumno-state.effects';
 
 @NgModule({
   declarations: [
     ListaAlumnoComponent,
     ModificarAlumnoComponent,
     UsernamePipe,
-    AgregarAlumnoComponent
+    AgregarAlumnoComponent,
+    AlumnoInicioComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     HttpClientModule,
     AlumnoRoutingModule,
-    StoreModule.forFeature(alumnoStateFeatureKey, reducer)
+    StoreModule.forFeature(alumnoStateFeatureKey, reducer),
+    EffectsModule.forFeature([AlumnoEffects])
   ],
   exports: [
     ListaAlumnoComponent

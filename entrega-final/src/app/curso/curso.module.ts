@@ -9,8 +9,10 @@ import { BooleanTransformPipe } from './pipes/boolean-transform.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { CursosService } from './services/cursos.service';
 import { StoreModule } from '@ngrx/store';
-import { cursoStateFeatureKey, reducer } from './curso-state.reducer';
+import { cursoStateFeatureKey, reducer } from './state/curso-state.reducer';
 import { CursoInicioComponent } from './components/curso-inicio/curso-inicio.component';
+import { EffectsModule } from '@ngrx/effects';
+import { CursoEffects } from './state/curso-state.effects';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { CursoInicioComponent } from './components/curso-inicio/curso-inicio.com
     RouterModule,
     SharedModule,
     CursoRoutingModule,
-    StoreModule.forFeature(cursoStateFeatureKey, reducer)
+    StoreModule.forFeature(cursoStateFeatureKey, reducer),
+    EffectsModule.forFeature([CursoEffects])
   ],
   exports: [
     CardCursoComponent

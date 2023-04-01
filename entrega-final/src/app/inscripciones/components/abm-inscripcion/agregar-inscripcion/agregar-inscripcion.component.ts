@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ProfesorService } from 'src/app/core/services/profesor.service';
 import { CursosService } from 'src/app/curso/services/cursos.service';
-import { AbmService } from 'src/app/inscripciones/service/abm.service';
+import { createInscripcionState } from 'src/app/inscripciones/state/inscripcion-state.actions';
+import { InscripcionState } from 'src/app/inscripciones/state/inscripcion-state.reducer';
 import { Curso } from 'src/app/shared/models/curso';
 import { Inscripcion } from 'src/app/shared/models/inscripcion';
 import { Profesor } from 'src/app/shared/models/profesor';
@@ -24,11 +24,10 @@ export class AgregarInscripcionComponent implements OnInit {
 
   constructor(
     private fb: UntypedFormBuilder,
-    private abmService: AbmService,
-    private router: Router,
     private profesor: ProfesorService,
+    private store: Store<InscripcionState>,
     private curso: CursosService,
-    private snackBar: MatSnackBar) {
+  ) {
 
     this.profesor$ = this.profesor.obtenerProfesores();
     this.curso$ = this.curso.obtenerCursosObservable();
@@ -47,18 +46,21 @@ export class AgregarInscripcionComponent implements OnInit {
   }
 
   createInscripcion() {
-    if (this.form.valid) {
-      this.abmService.createInscripcion(this.form.value).subscribe({
-        next: (res) => {
-          this.router.navigate(['/inscripciones/lista']);
-          this.snackBar.open('  Inscripcion creada correctamente', '', {
-            duration: 1500,
-            horizontalPosition: 'left',
-            verticalPosition: 'bottom'
-          });
-        }
-      })
+
+    let inscripcion: Inscripcion = {
+      id: NaN,
+      nro: NaN,
+      curso: this.form.value.curso,
+      comision: this.form.value.comision,
+      alumnoNombre: this.form.value.alumnoNombre,
+      alumnoApellido: this.form.value.alumnoApellido,
+      profesor: this.form.value.profesor
     }
+    this.store.dispatch(createInscripcionState({ inscripcion: inscripcion }));
 
   }
-}
+
+} 
+
+
+

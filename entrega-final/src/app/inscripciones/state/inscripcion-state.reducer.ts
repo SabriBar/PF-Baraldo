@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Inscripcion } from '../shared/models/inscripcion';
+import { Inscripcion } from '../../shared/models/inscripcion';
 import * as InscripcionStateActions from './inscripcion-state.actions';
 
 export const inscripcionStateFeatureKey = 'inscripcionState';
@@ -21,6 +21,15 @@ export const reducer = createReducer(
   }),
   on(InscripcionStateActions.inscripcionesCargadas, (state, { inscripciones }) => {
     return {...state, cargando: false, inscripciones};
+  }),
+  on(InscripcionStateActions.createInscripcionState, (state, { inscripcion: Inscripcion }) => {
+    return state;
+  }),
+  on(InscripcionStateActions.editInscripcionState, (state, { inscripcion: Inscripcion }) => {
+    return state;
+  }),
+  on(InscripcionStateActions.deleteInscripcionState, (state, { inscripcion: Inscripcion }) => {
+    return state;
   })
   
   )

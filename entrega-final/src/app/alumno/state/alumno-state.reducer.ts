@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Alumno } from '../shared/models/alumno';
+import { Alumno } from '../../shared/models/alumno';
 import * as AlumnoStateActions from './alumno-state.actions';
 
 export const alumnoStateFeatureKey = 'alumnoState';
@@ -21,6 +21,15 @@ export const reducer = createReducer(
   }),
   on(AlumnoStateActions.alumnosCargados, (state, { alumnos }) => {
     return {...state, cargando: false, alumnos};
+  }),
+  on(AlumnoStateActions.createAlumnoState, (state, { alumno: Alumno }) => {
+    return state;
+  }),
+  on(AlumnoStateActions.editAlumnoState, (state, { alumno: Alumno }) => {
+    return state;
+  }),
+  on(AlumnoStateActions.deleteAlumnoState, (state, { alumno: Alumno }) => {
+    return state;
   })
   
-  )
+  );

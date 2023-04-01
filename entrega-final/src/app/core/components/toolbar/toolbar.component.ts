@@ -2,8 +2,8 @@ import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AuthState } from 'src/app/authentication/auth.reducer';
-import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/auth.selectors';
+import { AuthState } from 'src/app/authentication/state/auth.reducer';
+import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/state/auth.selectors';
 import { Sesion } from 'src/app/shared/models/sesion';
 import { Usuario } from 'src/app/shared/models/usuario';
 import { SesionService } from '../../services/sesion.service';
@@ -14,18 +14,16 @@ import { SesionService } from '../../services/sesion.service';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  sesionActiva$!: Observable<Boolean>;
-  usuarioActivo$!: Observable<Usuario | undefined>;
+  
 
   constructor(
     private sesion: SesionService,
     private router: Router,
-    private authStore: Store<AuthState>
+    
   ) { }
 
   ngOnInit(): void {
-    this.sesionActiva$ = this.authStore.select(selectSesionActiva);
-    this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
+
   }
 
   logout(){
@@ -33,8 +31,10 @@ export class ToolbarComponent implements OnInit {
       sesionActiva: false,
       usuarioActivo: undefined
     }
+    location.reload();
     this.sesion.logout(sesionLogout);
     this.router.navigate(['/login']);
+    
   }
 
 }

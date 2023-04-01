@@ -4,7 +4,7 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from '../shared/shared.module';
 import { StoreModule } from '@ngrx/store';
-import { authFeatureKey, authReducer} from './auth.reducer';
+import { authFeatureKey, authReducer} from './state/auth.reducer';
 import { HttpClientModule } from '@angular/common/http';
 
 

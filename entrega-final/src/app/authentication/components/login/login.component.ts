@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { catchError, of, Subscription } from 'rxjs';
 import { Sesion } from 'src/app/shared/models/sesion';
 import { Usuario } from 'src/app/shared/models/usuario';
-import { cargarSesion } from '../../auth.actions';
-import { AuthState } from '../../auth.reducer';
+import { cargarSesion } from '../../state/auth.actions';
+import { AuthState } from '../../state/auth.reducer';
 import { LoginService } from '../../service/login.service';
 
 @Component({
@@ -45,11 +45,17 @@ export class LoginComponent implements OnInit, OnDestroy {
       contraseña: this.formularioLogin.value.contraseña,
       esAdmin: this.formularioLogin.value.esAdmin
     }
-      this.suscripcion = this.loginService.login(usuario).subscribe((sesion: Sesion) => {
-      this.authStore.dispatch(cargarSesion({ sesion: sesion }));
-      this.router.navigate(['/alumnos/lista']);
-      
-    });
+      this.suscripcion = this.loginService.login(usuario).pipe(
+        catchError((error) => {
+          console.error(error);
+          return of();
+        })
+      ).subscribe((sesion: Sesion) => {
+        if(sesion.sesionActiva){
+          this.authStore.dispatch(cargarSesion({ sesion: sesion }));
+          this.router.navigate(['/alumnos/lista']);
+        } 
+      });
     
    }
 

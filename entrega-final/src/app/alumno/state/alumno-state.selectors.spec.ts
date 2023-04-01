@@ -1,9 +1,9 @@
 import * as fromAlumnoState from './alumno-state.reducer';
-import { selectAlumnoStateState } from './alumno-state.selectors';
+import { selectAlumnoState } from './alumno-state.selectors';
 
 describe('AlumnoState Selectors', () => {
   it('should select the feature state', () => {
-    const result = selectAlumnoStateState({
+    const result = selectAlumnoState({
       [fromAlumnoState.alumnoStateFeatureKey]: {}
     });
 
