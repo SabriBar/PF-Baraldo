@@ -30,4 +30,6 @@ export class NavbarComponent implements OnInit {
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
   }
 
+  
+
 }

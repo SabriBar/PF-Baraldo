@@ -48,7 +48,7 @@ export class InscripcionEffects{
                 concatMap(({ inscripcion }) => {
                     return this.inscripcionAbm.deleteInscripcion(inscripcion).pipe(
                         map((inscripcion: Inscripcion) => {
-                            this.snackBar.open('  Inscripcion eliminado correctamente', '', {
+                            this.snackBar.open('  Inscripcion eliminada correctamente', '', {
                                 duration: 1500,
                                 horizontalPosition: 'left',
                                 verticalPosition: 'bottom'

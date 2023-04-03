@@ -2,8 +2,9 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { AuthState } from 'src/app/authentication/state/auth.reducer';
 import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/state/auth.selectors';
@@ -11,7 +12,7 @@ import { Alumno } from 'src/app/shared/models/alumno';
 import { Usuario } from 'src/app/shared/models/usuario';
 import { AbmService } from '../../services/abm.service';
 import { AlumnosService } from '../../services/alumnos.service';
-import { deleteAlumnoState } from '../../state/alumno-state.actions';
+import { alumnosCargados, cargarAlumnoState, deleteAlumnoState } from '../../state/alumno-state.actions';
 import { AlumnoState } from '../../state/alumno-state.reducer';
 import { selectAlumnosCargados, selectCargandoAlumnos } from '../../state/alumno-state.selectors';
 import { ModificarAlumnoComponent } from '../abm-alumno/modificar-alumno/modificar-alumno.component';
@@ -31,6 +32,7 @@ export class ListaAlumnoComponent implements OnInit, OnDestroy, AfterViewInit {
   alumnos$!: Observable<Alumno[]>;
   sesionActiva$!: Observable<Boolean>;
   usuarioActivo$!: Observable<Usuario | undefined>;
+  sort!: MatSort;
 
   constructor(
     public alumnoService: AlumnosService,
@@ -45,6 +47,13 @@ export class ListaAlumnoComponent implements OnInit, OnDestroy, AfterViewInit {
     this.alumnos$ = this.store.select(selectAlumnosCargados);
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
+
+    this.store.dispatch(cargarAlumnoState());
+    this.store.pipe(select(selectAlumnosCargados)).subscribe(alumnos => {
+      this.dataSource = new MatTableDataSource(alumnos);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   ngOnDestroy(): void {

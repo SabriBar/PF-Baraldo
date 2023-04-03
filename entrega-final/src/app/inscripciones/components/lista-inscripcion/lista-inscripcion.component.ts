@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { AuthState } from 'src/app/authentication/state/auth.reducer';
 import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/state/auth.selectors';
@@ -13,8 +13,9 @@ import { InscripcionState } from '../../state/inscripcion-state.reducer';
 import { AbmService } from '../../service/abm.service';
 import { InscripcionService } from '../../service/inscripcion.service';
 import { ModificarInscripcionComponent } from '../abm-inscripcion/modificar-inscripcion/modificar-inscripcion.component';
-import { deleteInscripcionState } from '../../state/inscripcion-state.actions';
+import { cargarInscripcionState, deleteInscripcionState } from '../../state/inscripcion-state.actions';
 import { selectInscripcionesCargadas } from '../../state/inscripcion-state.selectors';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-lista-inscripcion',
@@ -32,11 +33,10 @@ export class ListaInscripcionComponent implements OnInit {
   cargando$!: Observable<Boolean>;
   sesionActiva$!: Observable<Boolean>;
   usuarioActivo$!: Observable<Usuario | undefined>;
+  sort!: MatSort;
 
   constructor(
     public inscripcionService: InscripcionService,
-    private abmService: AbmService,
-    private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private store: Store<InscripcionState>,
     private authStore: Store<AuthState>
@@ -48,6 +48,14 @@ export class ListaInscripcionComponent implements OnInit {
     this.inscripcion$ = this.store.select(selectInscripcionesCargadas);
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
+
+
+    this.store.dispatch(cargarInscripcionState());
+    this.store.pipe(select(selectInscripcionesCargadas)).subscribe(inscripciones => {
+      this.dataSource = new MatTableDataSource(inscripciones);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   ngOnDestroy(): void {
@@ -80,12 +88,12 @@ export class ListaInscripcionComponent implements OnInit {
     this.store.dispatch(deleteInscripcionState({ inscripcion }));
   }
 
-  editDialog(inscripcion: Inscripcion){
+  editDialog(inscripcion: Inscripcion) {
     this.dialog.open(ModificarInscripcionComponent, {
       width: '30%',
       data: inscripcion
     }).afterClosed().subscribe(val => {
-      if(val === 'guardar'){
+      if (val === 'guardar') {
         this.cargarInscripcion();
       }
     });

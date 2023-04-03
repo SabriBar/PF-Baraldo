@@ -3,7 +3,7 @@
         <h2 class="agregar-inscripcion" appTituloEstilo>Nueva Inscripcion</h2>
     </div>
 
-    <mat-card appearance="outlined" style="margin-top: 1rem; margin-left: 1rem;">
+    <mat-card appearance="outlined">
         <form [formGroup]="form" (ngSubmit)="createInscripcion()">
             <mat-grid-list cols="4" rowHeight="70px">
                 <mat-grid-tile [colspan]="1" [rowspan]="1">

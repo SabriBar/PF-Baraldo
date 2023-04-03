@@ -55,6 +55,7 @@
       "id": 3
     },
     {
+      "id": 4,
       "nombre": "Carlos",
       "apellido": "Martinez",
       "curso": {
@@ -69,8 +70,7 @@
         "id": 4
       },
       "comision": "105",
-      "email": "carlistosm@gmail.com",
-      "id": 4
+      "email": "carlistosm@gmail.com"
     },
     {
       "nombre": "Jose",
@@ -375,7 +375,7 @@
     },
     {
       "usuario": "abner",
-      "contraseña": "asd.123",
+      "contraseña": "asd.12345",
       "esAdmin": true
     },
     {
