@@ -12,6 +12,7 @@
     width: 400px;
     transform: translateX(-200px) translateY(-200px);
     transition: transform 300ms;
+    z-index: 400;
   }
   .pie-color:hover {
     opacity: 0.85;
@@ -92,6 +93,7 @@
     position: absolute;
     top: -100px;
     width: 200px;
+    z-index: 500;
   }
   .hamburger {
     cursor: pointer;

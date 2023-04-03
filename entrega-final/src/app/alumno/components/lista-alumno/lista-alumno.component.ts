@@ -13,6 +13,7 @@ import { AbmService } from '../../services/abm.service';
 import { AlumnosService } from '../../services/alumnos.service';
 import { deleteAlumnoState } from '../../state/alumno-state.actions';
 import { AlumnoState } from '../../state/alumno-state.reducer';
+import { selectAlumnosCargados, selectCargandoAlumnos } from '../../state/alumno-state.selectors';
 import { ModificarAlumnoComponent } from '../abm-alumno/modificar-alumno/modificar-alumno.component';
 
 @Component({
@@ -41,6 +42,7 @@ export class ListaAlumnoComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.cargarAlumno();
+    this.alumnos$ = this.store.select(selectAlumnosCargados);
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
   }

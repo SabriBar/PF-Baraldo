@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthState } from 'src/app/authentication/state/auth.reducer';
 import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/state/auth.selectors';
 import { Usuario } from 'src/app/shared/models/usuario';
+
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +17,8 @@ export class NavbarComponent implements OnInit {
   public isActive = false;
 
 
-  public checkActive(){
-      this.isActive = !this.isActive;
+  public checkActive() {
+    this.isActive = !this.isActive;
   }
 
   constructor(

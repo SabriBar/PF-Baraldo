@@ -11,7 +11,7 @@
   
   .inscripciones {
     font-family: 'Lato', sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: #1F5379;
     letter-spacing: .06rem;
@@ -57,14 +57,15 @@
     margin: 0% 10% 0% 10%;
   }
   
-  .mat-mdc-raised-button{
+  .mat-mdc-raised-button:not(:disabled) {
     background-color: #33a578;
     color: #fffffe;
     font-family: 'Lato', sans-serif;
     font-weight: 600;
-    font-size: .9rem;
+    font-size: .8rem;
     letter-spacing: .05rem;
-    height: 3rem;
+    height: 2.8rem;
+    margin-bottom: 1rem;
   }
   
   mat-label{
@@ -78,4 +79,10 @@
     letter-spacing: .05rem;
     text-align: center;
     margin-top: 10%;
+  }
+
+  mat-paginator{
+    height: 3.4rem;
+    color:rgba(47, 79, 79, 0.76);
+    border-top: solid 1px #0e111327;
   }

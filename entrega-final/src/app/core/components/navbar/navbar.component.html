@@ -1,4 +1,4 @@
-<ng-container *ngIf="sesionActiva$ | async">
+<ng-container *ngIf="sesionActiva$ | async" id="slideBar">
   <ng-container *ngIf="sesionActiva$">
     <div class="pie pie1" [ngClass]="isActive ? 'inactive' : 'active'">
       <div class="pie-color pie-color1">

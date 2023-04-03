@@ -125,24 +125,6 @@
       "comision": "101",
       "email": "pepesanchez@gmail.com",
       "id": 7
-    },
-    {
-      "id": 8,
-      "nombre": "sabirra",
-      "apellido": "sdfsdf",
-      "curso": {
-        "id": 6,
-        "nombre": "aaaa",
-        "comision": "12234",
-        "profesor": {
-          "id": 6,
-          "nombre": "Indiana",
-          "correo": "indianaj@gmail.com"
-        },
-        "inscripcionAbierta": "Cerrada"
-      },
-      "comision": "333",
-      "email": "sabrii3336@gmail.com"
     }
   ],
   "cursos": [
@@ -200,17 +182,6 @@
       },
       "inscripcionAbierta": "Cerrada",
       "id": 5
-    },
-    {
-      "id": 6,
-      "nombre": "aaaa",
-      "comision": "12234",
-      "profesor": {
-        "id": 6,
-        "nombre": "Indiana",
-        "correo": "indianaj@gmail.com"
-      },
-      "inscripcionAbierta": "Cerrada"
     }
   ],
   "inscripciones": [

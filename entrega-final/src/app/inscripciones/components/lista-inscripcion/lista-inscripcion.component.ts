@@ -14,6 +14,7 @@ import { AbmService } from '../../service/abm.service';
 import { InscripcionService } from '../../service/inscripcion.service';
 import { ModificarInscripcionComponent } from '../abm-inscripcion/modificar-inscripcion/modificar-inscripcion.component';
 import { deleteInscripcionState } from '../../state/inscripcion-state.actions';
+import { selectInscripcionesCargadas } from '../../state/inscripcion-state.selectors';
 
 @Component({
   selector: 'app-lista-inscripcion',
@@ -44,6 +45,7 @@ export class ListaInscripcionComponent implements OnInit {
 
   ngOnInit() {
     this.cargarInscripcion();
+    this.inscripcion$ = this.store.select(selectInscripcionesCargadas);
     this.sesionActiva$ = this.authStore.select(selectSesionActiva);
     this.usuarioActivo$ = this.authStore.select(selectUsuarioActivo);
   }
