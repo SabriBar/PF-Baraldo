@@ -3,10 +3,13 @@ import { selectAlumnoState } from './alumno-state.selectors';
 
 describe('AlumnoState Selectors', () => {
   it('should select the feature state', () => {
+    const initialState: fromAlumnoState.AlumnoState = {
+      alumnos: [],
+      cargando: false
+    };
     const result = selectAlumnoState({
-      [fromAlumnoState.alumnoStateFeatureKey]: {}
+      [fromAlumnoState.alumnoStateFeatureKey]: initialState
     });
-
-    expect(result).toEqual({});
+    expect(result).toEqual(initialState);
   });
 });

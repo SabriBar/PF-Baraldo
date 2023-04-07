@@ -3,10 +3,13 @@ import { selectInscripcionState } from './inscripcion-state.selectors';
 
 describe('InscripcionState Selectors', () => {
   it('should select the feature state', () => {
+    const initialState: fromInscripcionState.InscripcionState = {
+      inscripciones: [],
+      cargando: false
+    };
     const result = selectInscripcionState({
-      [fromInscripcionState.inscripcionStateFeatureKey]: {}
+      [fromInscripcionState.inscripcionStateFeatureKey]: initialState
     });
-
-    expect(result).toEqual({});
+    expect(result).toEqual(initialState);
   });
 });
