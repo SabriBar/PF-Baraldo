@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { catchError, of, Subscription } from 'rxjs';
+import { catchError, of, subscribeOn, Subscription } from 'rxjs';
 import { Sesion } from 'src/app/shared/models/sesion';
 import { Usuario } from 'src/app/shared/models/usuario';
 import { cargarSesion } from '../../state/auth.actions';
@@ -36,8 +36,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if(this.suscripcion) {
     this.suscripcion.unsubscribe();
   }
+}
 
   login(){
     let usuario: Usuario = {

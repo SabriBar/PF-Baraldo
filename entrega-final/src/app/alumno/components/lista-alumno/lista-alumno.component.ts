@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { select, Store } from '@ngrx/store';
@@ -10,9 +9,8 @@ import { AuthState } from 'src/app/authentication/state/auth.reducer';
 import { selectSesionActiva, selectUsuarioActivo } from 'src/app/authentication/state/auth.selectors';
 import { Alumno } from 'src/app/shared/models/alumno';
 import { Usuario } from 'src/app/shared/models/usuario';
-import { AbmService } from '../../services/abm.service';
 import { AlumnosService } from '../../services/alumnos.service';
-import { alumnosCargados, cargarAlumnoState, deleteAlumnoState } from '../../state/alumno-state.actions';
+import { cargarAlumnoState, deleteAlumnoState } from '../../state/alumno-state.actions';
 import { AlumnoState } from '../../state/alumno-state.reducer';
 import { selectAlumnosCargados, selectCargandoAlumnos } from '../../state/alumno-state.selectors';
 import { ModificarAlumnoComponent } from '../abm-alumno/modificar-alumno/modificar-alumno.component';

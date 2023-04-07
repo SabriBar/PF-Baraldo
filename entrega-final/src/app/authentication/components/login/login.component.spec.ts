@@ -29,8 +29,8 @@ describe('Pruebas unitarias de autenticacion', () => {
     const usuario = form.controls["usuario"];
     const contraseña = form.controls["contraseña"];
 
-    usuario.setValue('maxPower');
-    contraseña.setValue('maxpower5690');
+    usuario.setValue('sabribar');
+    contraseña.setValue('sabribar3');
 
     expect(usuario.valid).toBeTrue();
     expect(contraseña.valid).toBeTrue();

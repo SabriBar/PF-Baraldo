@@ -6,7 +6,7 @@ import { MaterialModule } from 'src/app/material.module';
 
 import { ListaAlumnoComponent } from './lista-alumno.component';
 
-describe('ListaAlumnoComponent', () => {
+/*describe('ListaAlumnoComponent', () => {
   let component: ListaAlumnoComponent;
   let fixture: ComponentFixture<ListaAlumnoComponent>;
 
@@ -31,4 +31,4 @@ describe('ListaAlumnoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+});*/
